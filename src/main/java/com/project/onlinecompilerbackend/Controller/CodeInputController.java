@@ -22,6 +22,7 @@ public class CodeInputController {
         String code = data.getCode();
         String language = data.getLanguage();
         String input = data.getInput();
+        System.out.println(code,language,input);
 
         if("python".equals(language)){
             language="py";
