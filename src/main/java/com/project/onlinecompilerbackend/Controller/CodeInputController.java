@@ -33,7 +33,7 @@ public class CodeInputController {
         Data newData = new Data(code,language,input);
         String url = "https://api.codex.jaagrav.in";
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Data> entity = new HttpEntity<>(newData, headers);
         RestTemplate restTemplate = new RestTemplate();
