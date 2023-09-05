@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@CrossOrigin(origins = "https://shiv-1203.github.io/online-compiler")
+@CrossOrigin(origins = "https://shiv-1203.github.io")
 @RequestMapping("/api")
 public class CodeInputController {
     @PostMapping(path = "/postCode")
