@@ -26,25 +26,48 @@ public class CodeInputController {
         System.out.println(input);
         System.out.println(language);
 
-        if("python".equals(language)){
-            language="py";
+        // if("python".equals(language)){
+        //     language="py";
+        // }
+
+        // Data newData = new Data(code,language,input);
+        // String url = "https://codexweb.netlify.app/.netlify/functions/enforceCode";
+        // HttpHeaders headers = new HttpHeaders();
+        // headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // HttpEntity<Data> entity = new HttpEntity<>(newData, headers);
+        // RestTemplate restTemplate = new RestTemplate();
+
+        // try {
+        //     ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+        //     System.out.println(response.getBody());
+        //     return response.getBody();
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        //     return "Error occurred during compilation.";
+        // }
+        if (language.equals("python")) {
+            language = "py";
         }
-
-        Data newData = new Data(code,language,input);
-        String url = "https://codexweb.netlify.app/.netlify/functions/enforceCode";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<Data> entity = new HttpEntity<>(newData, headers);
+        Map<String, Object> data = new HashMap<>();
+        data.put("code", code);
+        data.put("language", language);
+        data.put("input", input);
+        Map<String, Object> config = new HashMap<>();
+        config.put("method", "post");
+        config.put("url", "https://codexweb.netlify.app/.netlify/functions/enforceCode");
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Content-Type", "application/json");
+        config.put("headers", headers);
+        config.put("data", data);
         RestTemplate restTemplate = new RestTemplate();
-
         try {
-            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-            System.out.println(response.getBody());
-            return response.getBody();
+            Map<String, Object> response = restTemplate.postForObject((String) config.get("url"), config.get("data"), Map.class);
+            System.out.println(response.toString());
+            return response.toString();
         } catch (Exception e) {
-            e.printStackTrace();
-            return "Error occurred during compilation.";
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }
