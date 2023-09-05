@@ -22,7 +22,9 @@ public class CodeInputController {
         String code = data.getCode();
         String language = data.getLanguage();
         String input = data.getInput();
-        System.out.println(code,language,input);
+        System.out.println(code);
+        System.out.println(input);
+        System.out.println(language);
 
         if("python".equals(language)){
             language="py";
@@ -38,6 +40,7 @@ public class CodeInputController {
 
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+            System.out.println(response.getBody());
             return response.getBody();
         } catch (Exception e) {
             e.printStackTrace();
