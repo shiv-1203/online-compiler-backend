@@ -31,9 +31,9 @@ public class CodeInputController {
         }
 
         Data newData = new Data(code,language,input);
-        String url = "https://codexweb.netlify.app/.netlify/functions/enforceCode";
+        String url = "https://api.codex.jaagrav.in";
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
         HttpEntity<Data> entity = new HttpEntity<>(newData, headers);
         RestTemplate restTemplate = new RestTemplate();
